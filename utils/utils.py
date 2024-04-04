@@ -19,4 +19,20 @@ def create_spark_postgres(server_name:str, table_name:str) -> DataFrame:
 	df = spark.read.jdbc(url=url, table=table_name, properties=properties)
 	return df
 
+def create_spark_session(app_name:str=None) -> SparkSession:
+	"""Create a simple single-node local Spark Session"""
+
+	if app_name:
+		spark = (SparkSession
+			.builder
+			.getOrCreate())
+		return spark
+	else:
+		spark = (SparkSession
+			.builder
+			.appName(app_name)
+			.getOrCreate())
+		return spark
+
+
 
