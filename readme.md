@@ -1,1 +1,1 @@
-# repo for tinkering with pyspark on local devices
+PySpark setup and applications
