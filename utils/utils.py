@@ -10,7 +10,8 @@ host=config['postgres']['Host']
 jdbc=config['postgres']['JDBC']
 port=config['postgres']['Port']
 
-def create_spark_postgres(server_name, table_name):
+def create_spark_postgres(server_name:str, table_name:str) -> pyspark.sql.dataframe.DataFrame:
+	"""Creates a single-node local pyspark session to connect to local hosted PostgreSQL database"""
 	spark = SparkSession.builder.config('spark.driver.extraClassPath', jdbc).getOrCreate()
 	url = f'jdbc:postgresql://{host}:{port}/{server_name}'
 	properties = {'user':user, 'password':password}
